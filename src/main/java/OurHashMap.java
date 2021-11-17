@@ -1,12 +1,20 @@
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class OurHashMap implements Map
 {
-    private final int SIZE = 1024;
-    Object values[] = new Object[SIZE];
+    private final int SIZE = 16;
+    class Entry
+    {
+        Object key;
+        Object value;
 
+        public Entry(Object key, Object value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+    }
+    List<Entry> values[] = new List[SIZE];
     @Override
     public int size()
     {
@@ -35,7 +43,20 @@ public class OurHashMap implements Map
     public Object get(Object key)
     {
         int hashcode = key.hashCode();
-        return values[hashcode % SIZE];
+        int index = Math.abs(hashcode % SIZE);
+        List<Entry> list = values[index];
+        if (list == null)
+        {
+            return null;
+        }
+        for(Entry entry : list)
+        {
+            if(entry.key.equals(key))
+            {
+                return entry.value;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -43,7 +64,14 @@ public class OurHashMap implements Map
     {
         int hashcode = key.hashCode();
         int index = Math.abs(hashcode % SIZE);
-        values[index] = value;
+        Entry entry = new Entry(key, value);
+        List list = values[index];
+        if(list == null)
+        {
+            list = new ArrayList<Entry>();
+            values[index] = list;
+        }
+        list.add(entry);
         //todo return the previous value
         return null;
     }
