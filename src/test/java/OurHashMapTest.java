@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -160,17 +157,17 @@ class OurHashMapTest
     {
         //given
         OurHashMap<String, String> map = new OurHashMap<>();
-        OurHashMap<String, String> putMap = new OurHashMap<>();
-        map.put("English1", "Hello");
-        map.put("Spanish", "Hola");
-        map.put("Hebrew", "Shalom");
-        map.put("French", "Bonjour");
+        Map<String, String> putMap = new HashMap<>();
+        putMap.put("English1", "Hello");
+        putMap.put("Spanish", "Hola");
+        putMap.put("Hebrew", "Shalom");
+        putMap.put("French", "Bonjour");
 
         //when
-        putMap.putAll(map);
+        map.putAll(putMap);
 
         //then
-        assertNotNull(putMap);
+        assertNotNull(map);
         assertEquals(map.get("English1"), putMap.get("English1"));
     }
     @Test
