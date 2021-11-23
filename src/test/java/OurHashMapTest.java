@@ -17,9 +17,10 @@ class OurHashMapTest
         map.put("Spanish", "Hola");
         map.put("Hebrew", "Shalom");
         map.put("French", "Bonjour");
+        map.put("Mandarin", "Conichiwa");
 
         //then
-        assertEquals(16, map.size());
+        assertEquals(5, map.size());
     }
     @Test
     void isNotEmpty()
@@ -43,7 +44,8 @@ class OurHashMapTest
         OurHashMap<String, String> map = new OurHashMap<>();
 
         //when
-
+        map.put("English1", "Hello");
+        map.remove("English1");
         //then
         assertTrue(map.isEmpty());
     }
