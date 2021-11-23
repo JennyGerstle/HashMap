@@ -25,11 +25,7 @@ public class OurHashMap<K, V> implements Map<K, V>
         {
             if(list != null)
             {
-                if(size == 0)
-                {
-                    size++;
-                }
-                size++;
+                size += list.size();
             }
         }
         return size;
@@ -140,7 +136,8 @@ public class OurHashMap<K, V> implements Map<K, V>
     public void putAll(Map m)
     {
         m.forEach((key, value) -> {
-            this.put((K)key,(V)value);});
+            this.put((K)key,(V)value);
+        });
     }
 
     @Override
